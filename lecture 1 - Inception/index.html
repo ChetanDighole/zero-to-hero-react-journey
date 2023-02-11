@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1</title>
+</head>
+
+<body>
+    <div id="root">Not Render</div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script>
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+
+
+        //React.createElement takes 3 arguments  1.tag , 2. object , 3.what we want to put in tag
+        const heading = React.createElement('h1',
+            {
+                id: 'title',
+                style : 
+                    {
+                        color:'#134ab5',
+                        backgroundColor:'orange'
+                    }, 
+            }
+            , "Namaste @react!!!")
+        //{props} / {} : all tag attributes comes from this object 
+
+        
+        
+        const heading1 = React.createElement('h1' , 
+        {
+            style:{
+                color:'purple'
+            }
+        },
+        "Hello"
+        )
+        
+        const heading2 = React.createElement('h2' , 
+        {
+            style:{
+                color:'#1d1d1d'
+            }
+        } , 
+        "world")
+        
+        const container = React.createElement('div' , { style : {backgroundColor:'yellow'}} , [heading1 , heading2])
+        
+        console.log(container);
+        root.render(container)
+        
+        </script>
+
+</body>
+
+</html>
