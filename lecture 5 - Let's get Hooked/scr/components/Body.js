@@ -1,29 +1,52 @@
-import { RestaurentList  } from "../constant"
+import { useState } from "react"
+import { RestaurentList } from "../constant"
 import { RestrauntCard } from "./RestrauntCard"
 
-const Body = () =>{
 
-    const searchTxt = "KFC"
+const Body = () => {
+  // const searchTxt = "KFC"
 
-    return(
-        <>
-        <div className="search-container">
-            <input type="text" className="search-input" placeholder="search" value={searchTxt}
-            //onChange
-            onChange={(e)=>console.log(e.target.value)}/>
-            <button className="search-btn">Search</button>
-        </div>
-        <div className="restraunt-list">
+  // const seachvar = useState("kFc");
 
-          {
-            RestaurentList.map(restaurant => {
+  // const [searchText , setSearchText] = seachvar
+  const [searchText, setSearchText] = useState("");
 
-              return <RestrauntCard {...restaurant.data} key={restaurant.data.id}/>
-            })
-          }
-        </div>
-        </>
-    )
+  const [restaurants, setRestaurants] = useState(RestaurentList)
+
+  function filterData(searchText, restaurants) {
+    const filterData = restaurants.filter(
+      (restaurant) =>
+        restaurant.data.name.includes(searchText))
+    return filterData
+  }
+
+  return (
+    <>
+      <div className="search-container">
+        <input type="text" className="search-input" placeholder="search" value={searchText}
+          //onChange
+          onChange={(e) =>
+            setSearchText(e.target.value)} />
+
+        <button className="search-btn" onClick={() => {
+          //need to filter the data
+          const data = filterData(searchText, restaurants)
+          //update the state - restaurant
+          setRestaurants(data)
+
+        }}>search - {searchText}</button>
+      </div>
+      <div className="restraunt-list">
+
+        {
+          restaurants.map(restaurant => {
+
+            return <RestrauntCard {...restaurant.data} key={restaurant.data.id} />
+          })
+        }
+      </div>
+    </>
+  )
 }
 
 export default Body
