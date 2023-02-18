@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import  ReactDOM from "react-dom/client";
 
 const Title = () => {
@@ -13,7 +13,17 @@ const styleObj = {
     backgroundColor: '#FAF9F6'
 }
 
+
+const loggedInUser = () =>{
+    return true
+}
+
+
 const Header = () => {
+
+
+    const [isLoggedIn , setIsLoggedIn] = useState(false)
+
     return (
         <div className="header" style={styleObj}>
             <Title />
@@ -25,6 +35,13 @@ const Header = () => {
                     <li>Cart</li>
                 </ul>
             </div>
+
+            {
+                isLoggedIn?
+                <button onClick={()=>setIsLoggedIn(false)}>Logout</button> : 
+            <button onClick={()=>setIsLoggedIn(true)}>Login</button>
+            }
+
         </div>
     )
 }
