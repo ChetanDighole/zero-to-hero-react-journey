@@ -103,4 +103,50 @@ const appRoute = createBrowserRouter(
 root.render(<RouterProvider router={appRoute} />)
 
 ```
+***
+## Dynamic segment in react-router-dom
+`/restaurants/:id` id can be anything
+
+```js
+//in appRoute
+{
+    path: '/restaurant/:id',
+    element: <Restaurant />
+}
+
+//in restaurant component
+import {useParams} from 'react-router-dom'
+
+const Restaurant = () => {
+    // below id is the same id which we passed from appRout
+    const { id } = useParams()
+    return (
+        <>
+        <h1>id is {id}</h1>
+        </>
+    )
+}
+export default Restaurant
+```
+***
+## useRouteError
+
+```js
+import { useRoutError } from "react-router-dom"
+
+const Error = () => {
+    const err = useRoutError();
+    return (
+        <div>
+        <h1>OOPS!! error</h1>
+        </div>
+    )
+}
+export default Error
+
+```
+- If we go to wrong url this component will show up as we have defined it in appRoute errorElement.
+
+***
+
 
