@@ -40,5 +40,15 @@ const { user } = useContext(UserContext)
 </UserContext.Consumer>
 ```
 ***
-- to use dynamic data use <userContext.Provider>
+- to use dynamic data use <userContext.Provider> and wrap around the components where you want to pass data
+
+```js
+//userContext is our created context
+<userContext.Provider>
+  <Home />
+  <About />
+</userContext.Provider>
+```
+
+
 
